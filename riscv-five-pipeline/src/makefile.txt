@@ -1,0 +1,42 @@
+
+
+
+
+# Makefile for CPU simulation
+
+# Define the source files
+SRC = top.v InstructionMemory.v DataMemory.v  RiscvCore.v  pc.v decode.v RegisterFile.v Immgen.v ALU.v ControlUnit.v BranchControl.v WriteBack.v npc.v
+
+# Define the name of the output executable
+TARGET = cpu_sim
+
+# Define the compiler and compiler flags
+CC = iverilog
+CFLAGS = -Wall -o $(TARGET)
+
+# Define the simulator and simulator flags
+SIM = vvp
+SIMFLAGS = -n $(TARGET)
+
+# Define the input testbench file
+TB = testbench.v
+
+# Define the default make target
+all: $(TARGET)
+
+# Define the target for the executable
+$(TARGET): $(SRC)
+    $(CC) $(CFLAGS) $(SRC)
+
+# Define the target for running the simulation
+sim: $(TARGET) $(TB)
+    $(SIM) $(SIMFLAGS) $(TB)
+
+# Define the target for cleaning up generated files
+clean:
+    rm -f $(TARGET) *~ *.vcd
+
+.PHONY: all sim clean
+
+
+
