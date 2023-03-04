@@ -5,7 +5,8 @@ module pc(
     input [31:0] npc,
     output reg [31:0] pc
 );
-    always @(posedge clk or posedge reset)
+    //下降沿写入pc寄存器
+    always @(negedge clk)
         begin
             if(reset)
                 pc <= 32'b0;

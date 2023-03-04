@@ -45,13 +45,13 @@ module  ALU(
 
 
     // 根据 ALUASrc 和 ALUBSrc 来确定 A 和 B 的值
-    always @(posedge clk) begin       
+    always @(*) begin       
             A = (ALUASrc)? pc:ReadData1;
             case (ALUBSrc)
-                2'b00: B <= ReadData2;
-                2'b01: B <= ImmGenOut;
-                2'b10: B <= 32'd4;
-                default: B <= 32'd0;
+                2'b00: B = ReadData2;
+                2'b01: B = ImmGenOut;
+                2'b10: B = 32'd4;
+                default: B = 32'd0;
             endcase
         end
 

@@ -22,7 +22,7 @@ module DataMemory (
     end
 
 
-    always @(posedge clk)
+    always @(DataAddr)
         begin
             read_data_w = {ram[DataAddr+3],ram[DataAddr+2],ram[DataAddr+1],ram[DataAddr]};
             read_data_b = read_data_w[7:0];

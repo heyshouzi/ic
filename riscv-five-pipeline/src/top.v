@@ -22,9 +22,9 @@ module top (
         .MemReadDataOut(MemReadDataOut),
         .InstAddr(InstAddr),
         .DataAddr(DataAddr),
-        .MemOp(MemOp),
-        .MemRead(MemRead),
-        .MemWrite(MemWrite),
+        .MemOp_EX_MEM_out(MemOp),
+        .MemRead_EX_MEM_out(MemRead),
+        .MemWrite_EX_MEM_out(MemWrite),
         .MemDataIn(MemDataIn)
     );
 
@@ -37,7 +37,8 @@ module top (
     DataMemory dm (
         .clk(clk),
         .MemOp(MemOp),
-        .DataAddr(DataAddr),
+        .DataAddr(Data
+        Addr),
         .WriteData(MemDataIn),
         .MemRead(MemRead),
         .MemWrite(MemWrite),
