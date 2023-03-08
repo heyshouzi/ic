@@ -111,6 +111,10 @@ module RiscvCore (
 
     //WriteBack
     wire [31:0] RegWriteData;
+    
+    //forwarding
+    wire [1:0] forwardA;
+    wire [1:0] forwardB;
 
     pc u_pc(
         .clk(clk),
@@ -220,6 +224,10 @@ module RiscvCore (
         .ReadData2(ReadData2_ID_EX_out),
         .pc(pc_ID_EX_out),
         .ImmGenOut(ImmGenOut_ID_EX_out),
+        .forwardA(forwardA),
+        .forwardB(forwardB),
+        .ALUResult_EX_MEM_out(ALUResult_EX_MEM_out),
+        .RegWriteData(RegWriteData),
         .ALUResult(ALUResult),
         .Zero(Zero),
         .Less(Less)
@@ -287,8 +295,8 @@ module RiscvCore (
         .ALUResult_line_in(ALUResult_EX_MEM_out),
         .MemtoReg_line_in(MemtoReg_EX_MEM_out),
         .RegWrite_line_in(RegWrite_EX_MEM_out),
-        .rs1_line_out(rs1_EX_MEM_out),
-        .rs2_line_out(rs2_EX_MEM_out),
+        .rs1_line_in(rs1_EX_MEM_out),
+        .rs2_line_in(rs2_EX_MEM_out),
         .rd_line_in(rd_EX_MEM_out),
         .MemtoReg_line_out(MemtoReg_MEM_WB_out),
         .RegWrite_line_out(RegWrite_MEM_WB_out),
@@ -306,7 +314,17 @@ module RiscvCore (
         .RegWriteData(RegWriteData)
     );
 
-
+    forwarding u_forwarding(
+        .rs1_ID_EX_in(rs1_ID_EX_out),
+        .rs2_ID_EX_in(rs2_ID_EX_out),
+        .rd_EX_MEM_in(rd_EX_MEM_out),
+        .rd_MEM_WB_in(rd_MEM_WB_out),
+        .RegWrite_EX_MEM_in(RegWrite_EX_MEM_out),
+        .RegWrite_MEM_WB_in(RegWrite_MEM_WB_out),
+        .forwardA(forwardA),
+        .forwardB(forwardB)
+    );
+    
 
 
 

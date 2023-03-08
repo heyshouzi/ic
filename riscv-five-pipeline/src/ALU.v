@@ -24,11 +24,15 @@ module  ALU(
     input [31:0] ReadData2,
     input [31:0] pc,     
     input [31:0] ImmGenOut,
+    input [1:0] forwardA,
+    input [1:0] forwardB,
+    input [31:0] ALUResult_EX_MEM_out,
+    input [31:0] RegWriteData,
     output reg [31:0] ALUResult, // ALU 输出的结果
     output reg  Zero, 
     output reg Less // 在执行B型指令时设置为1，如果A < B，则为1，否则为0
 );
-     // 定义操作码
+    // 定义操作码
     parameter ALU_ADD = 4'b0000;
     parameter ALU_SUB = 4'b1000;
     parameter ALU_SLL = 4'b0001;
@@ -41,20 +45,41 @@ module  ALU(
     parameter ALU_AND = 4'b0111;
     parameter ALU_LOADIMM = 4'b0011;
 
-    reg[31:0] A,B;
+    reg [31:0] A,B;
+    reg [31:0] FA,FB;
+    // 根据 ALUASrc 和 ALUBSrc 来确定 FA 和 FB 的值
 
 
-    // 根据 ALUASrc 和 ALUBSrc 来确定 A 和 B 的值
+
     always @(*) begin       
-            A = (ALUASrc)? pc:ReadData1;
+            FA = (ALUASrc)? pc:ReadData1;
             case (ALUBSrc)
-                2'b00: B = ReadData2;
-                2'b01: B = ImmGenOut;
-                2'b10: B = 32'd4;
-                default: B = 32'd0;
+                2'b00: FB = ReadData2;
+                2'b01: FB = ImmGenOut;
+                2'b10: FB = 32'd4;
+                default: FB = 32'd0;
             endcase
         end
 
+
+    //
+    always @(*) begin
+        case (forwardA)
+            2'b00: A = FA;
+            2'b10: A = ALUResult_EX_MEM_out;
+            2'b01: A = RegWriteData;
+            default: A = 32'b0;
+        endcase
+    end
+
+    always @(*) begin
+        case (forwardB)
+            2'b00: B = FB;
+            2'b10: B = ALUResult_EX_MEM_out;
+            2'b01: B = RegWriteData;  
+            default: B = 32'b0;
+        endcase
+    end
              
 
     // 根据 ALUCtl 来计算 ALUResult、Zero 和 Less

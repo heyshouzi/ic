@@ -39,8 +39,8 @@ module EX_MEM (
     output reg [31:0] ALUResult_line_out,
     
     //output_forwarding
-    output     [4:0] rs1_line_out,
-    output     [4:0] rs2_line_out,
+    output reg [4:0] rs1_line_out,
+    output reg [4:0] rs2_line_out,
 
     //output_WriteBack
     output reg [4:0] rd_line_out,

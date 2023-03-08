@@ -37,8 +37,7 @@ module top (
     DataMemory dm (
         .clk(clk),
         .MemOp(MemOp),
-        .DataAddr(Data
-        Addr),
+        .DataAddr(DataAddr),
         .WriteData(MemDataIn),
         .MemRead(MemRead),
         .MemWrite(MemWrite),
