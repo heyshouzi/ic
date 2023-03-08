@@ -20,7 +20,6 @@ module RiscvCore (
 
 
 
-
     // decode
     wire [6:0] opcode;
     wire [2:0] func3;
