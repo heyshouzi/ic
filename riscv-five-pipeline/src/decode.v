@@ -1,6 +1,6 @@
 module decode (
     input [31:0] Instruction,
-    output reg [6:0] opcode,
+    output  reg [6:0] opcode,
     output  reg [2:0] func3,
     output  reg [6:0] func7,
     output  reg [4:0] Rs1,

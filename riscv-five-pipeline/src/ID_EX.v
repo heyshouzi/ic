@@ -1,6 +1,9 @@
 module ID_EX (
     input clk,
     input reset,
+    //if flush == 1 flush pipeline register
+    //if flush == 0  do nothing
+    input flush,
 
     //input_immgen
     input [31:0] imm_line_in,
@@ -28,6 +31,8 @@ module ID_EX (
     input     [4:0] rs2_line_in,
     input     [4:0] rd_line_in,
 
+    //input_bubble
+    input   RegWrite/MemWrite,
     //output_immgen
     output reg [31:0] imm_line_out,
 
@@ -57,7 +62,31 @@ module ID_EX (
 
 );
     always @(posedge clk) begin
-        if(!reset) begin
+        if(reset || flush)
+            begin
+                ReadData1_line_out <= 32'b0;
+                ReadData2_line_out <= 32'b0;
+
+                rs1_line_out <= 5'b0;
+                rs2_line_out <= 5'b0;
+                rd_line_out <= 5'b0;
+
+                pc_line_out  <= 32'b0;
+
+                RegWrite_line_out <= 1'b0;
+                Branch_line_out <= 3'b0;
+                MemWrite_line_out <= 1'b0;
+                MemOp_line_out <= 3'b0;
+                MemRead_line_out <= 1'b0;
+                ALUASrc_line_out <= 1'b0;
+                ALUBSrc_line_out <= 2'b0;
+                ALUCtl_line_out <= 4'b0;
+                MemtoReg_line_out <= 1'b0;
+                
+                imm_line_out <= 32'b0;
+            end
+        else
+            begin
             ReadData1_line_out <= ReadData1_line_in;
             ReadData2_line_out <= ReadData2_line_in;
 
@@ -66,10 +95,13 @@ module ID_EX (
             rd_line_out <= rd_line_in;
 
             pc_line_out  <= pc_line_in;
+            
+            if(RegWrite/MemWrite)begin
+                RegWrite_line_out <= 1'b0;
+                MemWrite_line_out <= 1'b0;
+            end
 
-            RegWrite_line_out <= RegWrite_line_in;
             Branch_line_out <= Branch_line_in;
-            MemWrite_line_out <= MemWrite_line_in;
             MemOp_line_out <= MemOp_line_in;
             MemRead_line_out <= MemRead_line_in;
             ALUASrc_line_out <= ALUASrc_line_in;
@@ -78,7 +110,7 @@ module ID_EX (
             MemtoReg_line_out <= MemtoReg_line_in;
             
             imm_line_out <= imm_line_in;
-        end
+            end
         
     end
 endmodule

@@ -1,6 +1,5 @@
 
 module ImmGen (
-    input clk,
     input [31:0] Instruction,
     input [6:0] opcode,
     output reg [31:0] ImmGenOut     //32位经过符号扩展的偏移地址

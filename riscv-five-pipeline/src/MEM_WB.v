@@ -1,6 +1,7 @@
 module MEM_WB (
     input clk,
     input reset,
+
     input [31:0] MemReadData_line_in,
     input [31:0] ALUResult_line_in,
     input  MemtoReg_line_in,

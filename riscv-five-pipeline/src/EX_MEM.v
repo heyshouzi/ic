@@ -2,6 +2,8 @@ module EX_MEM (
     input clk,
     input reset,
 
+    input flush,
+
     //input_DataMemory
     input [2:0] MemOp_line_in,
     input MemWrite_line_in,
@@ -48,7 +50,27 @@ module EX_MEM (
     output reg MemtoReg_line_out
 );
     always @(posedge clk) begin
-        if(!reset)
+        if(reset || flush)
+            begin
+                ALUResult_line_out <= 32'b0;
+                
+                MemOp_line_out <= 3'b0;
+                MemWrite_line_out <= 1'b0;
+                MemRead_line_out <= 1'b0;
+                ReadData2_line_out <= 32'b0;
+                
+                Branch_line_out <= 3'b0;
+                Less_line_out <= 1'b0;
+                Zero_line_out <= 1'b0;
+
+                rs1_line_out <= 5'b0;
+                rs2_line_out <= 5'b0;
+
+                rd_line_out <= 5'b0;
+                RegWrite_line_out <= 1'b0;
+                MemtoReg_line_out <= 1'b0;
+            end
+        else
             begin
                 ALUResult_line_out <= ALUResult_line_in;
                 
@@ -68,5 +90,6 @@ module EX_MEM (
                 RegWrite_line_out <= RegWrite_line_in;
                 MemtoReg_line_out <= MemtoReg_line_in;
             end
+        
     end
 endmodule

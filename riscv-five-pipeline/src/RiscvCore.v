@@ -115,6 +115,12 @@ module RiscvCore (
     wire [1:0] forwardA;
     wire [1:0] forwardB;
 
+    //HazardDctectionUnit
+    wire predictor;
+    wire flush;
+
+    //bubble
+    wire 
     pc u_pc(
         .clk(clk),
         .reset(reset),
@@ -323,6 +329,14 @@ module RiscvCore (
         .forwardA(forwardA),
         .forwardB(forwardB)
     );
+
+    HazardDctectionUnit u_HazardDctectionUnit(
+        .opcode(opcode),
+        .PCASrc(PCASrc),
+        .PCBSrc(PCBSrc),
+        .predictor(predictor),
+        .flush(flush)
+    )
     
 
 

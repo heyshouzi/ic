@@ -75,6 +75,43 @@ registers = {
     "x31": "11111"
 }
 
+func3 ={
+    "add": "000",
+    "sub": "000",
+    "and": "111",
+    "or": "110", 
+    "xor": "100",
+    "sll": "001", 
+    "srl": "101",
+    "sra": "101",
+    "slt": "010", 
+    "sltu": "011",
+    "addi": "000",
+    "andi": "111",
+    "ori": "110", 
+    "srli":"101",
+    "slli":"001",
+    "srai":"101",
+    "xori": "100", 
+    "slti": "010", 
+    "sltiu": "011",
+    "lb": "000", 
+    "lh": "001", 
+    "lw": "010", 
+    "lbu": "100", 
+    "lhu": "101", 
+    "sb": "000", 
+    "sh": "001", 
+    "sw": "010",
+    "beq": "000", 
+    "bne": "001", 
+    "blt": "100", 
+    "bge": "101", 
+    "bltu": "110",
+    "bgeu":"111"
+}
+
+
 # 定义一个函数，将指令转换为二进制代码
 def assemble(instruction):
     # 将指令分成操作符和操作数
@@ -84,7 +121,6 @@ def assemble(instruction):
     # 生成二进制代码
     if op in ["add", "sub", "and", "or", "xor", "sll", "srl", "sra", "slt", "sltu"]:
         # R-type指令
-        func3 = {"add": "000", "sub": "000", "and": "111", "or": "110", "xor": "100", "sll": "001", "srl": "101", "sra": "101", "slt": "010", "sltu": "011"}[op]
         rd, rs1, rs2 = [registers[p] for p in parts[1:]]
         return f"{int(func3, 2):03b}{rs2}{rs1}000{rd}{opcode[op]}"
     

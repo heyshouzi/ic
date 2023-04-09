@@ -54,8 +54,8 @@ module top_tb();
         // Instruction = 32'b000000000001_00011_000_00011_0010011; // auipc x2, 0xf  x2 = pc + 0xf000
         // $monitor("x2=%h,x3=%h",dut.core.u_RegisterFile.RegFiles[2],dut.core.u_RegisterFile.RegFiles[3]);
         // #10;
-        // Instruction = 32'b000000000010_00000_000_00011_0010011; // addi x3, x2, 2
-        // #10;
+        Instruction = 32'b000000000010_00010_000_00011_0010011; // addi x3, x2, 2
+        #10;
         // Instruction = 32'b0000000_00010_00010_000_00100_0110011; // add x4, x2, x1
         #100;
         $finish;

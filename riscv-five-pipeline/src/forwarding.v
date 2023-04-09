@@ -34,4 +34,6 @@ module forwarding (
         forwardA = forwardA_temp;
         forwardB = forwardB_temp;
     end
+
+
 endmodule
