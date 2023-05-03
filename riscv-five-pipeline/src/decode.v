@@ -3,9 +3,9 @@ module decode (
     output  reg [6:0] opcode,
     output  reg [2:0] func3,
     output  reg [6:0] func7,
-    output  reg [4:0] Rs1,
-    output  reg [4:0] Rs2,
-    output  reg [4:0] Rd
+    output  reg [4:0] rs1,
+    output  reg [4:0] rs2,
+    output  reg [4:0] rd
 );
     parameter R_Type  =   7'b0110011;
     parameter I_Type  =   7'b0010011;
@@ -21,58 +21,58 @@ module decode (
         case (opcode)
             Jalr: 
                 begin
-                    Rd     = Instruction[11:7];
-                    Rs1    = Instruction[19:15];
+                    rd     = Instruction[11:7];
+                    rs1    = Instruction[19:15];
                     func3  = Instruction[14:12];
                 end
             Jal:
                 begin
-                    Rd     = Instruction[11:7];
+                    rd     = Instruction[11:7];
                 end
             auipc:
                 begin
-                    Rd     = Instruction[11:7];
+                    rd     = Instruction[11:7];
                 end
             lui:
                 begin
-                    Rd     = Instruction[11:7];
+                    rd     = Instruction[11:7];
                 end 
             B_Type:
                 begin
-                    Rs1    = Instruction[19:15];
-                    Rs2    = Instruction[24:20];
+                    rs1    = Instruction[19:15];
+                    rs2    = Instruction[24:20];
                     func3  = Instruction[14:12];
                 end
             S_Type:
                 begin
-                    Rs1    = Instruction[19:15];
-                    Rs2    = Instruction[24:20];
+                    rs1    = Instruction[19:15];
+                    rs2    = Instruction[24:20];
                     func3  = Instruction[14:12];
                 end 
             Il_Type:
                 begin
-                    Rd     = Instruction[11:7];
-                    Rs1    = Instruction[19:15];
+                    rd     = Instruction[11:7];
+                    rs1    = Instruction[19:15];
                     func3  = Instruction[14:12];
                 end
             I_Type:
                 begin
-                    Rd     = Instruction[11:7];
-                    Rs1    = Instruction[19:15];
+                    rd     = Instruction[11:7];
+                    rs1    = Instruction[19:15];
                     func3  = Instruction[14:12];
                 end
             R_Type:
                 begin
-                    Rd     = Instruction[11:7];
-                    Rs1    = Instruction[19:15];
-                    Rs2    = Instruction[24:20];
+                    rd     = Instruction[11:7];
+                    rs1    = Instruction[19:15];
+                    rs2    = Instruction[24:20];
                     func3  = Instruction[14:12];
                 end
             default: 
                 begin
-                    Rd     = Instruction[11:7];
-                    Rs1    = Instruction[19:15];
-                    Rs2    = Instruction[24:20];
+                    rd     = Instruction[11:7];
+                    rs1    = Instruction[19:15];
+                    rs2    = Instruction[24:20];
                     func3  = Instruction[14:12];
                 end
         endcase

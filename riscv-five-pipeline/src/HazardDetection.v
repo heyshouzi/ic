@@ -1,9 +1,9 @@
 module HazardDetection (
-    input [6:0] opcode;
+    input [6:0] opcode,
     input  PCASrc,
-    input PCBSrc;
-    output predictor;
-    output flush;
+    input PCBSrc,
+    output reg predictor,
+    output reg flush
 );
     reg predictor_temp;
     reg flush_temp;

@@ -5,90 +5,90 @@ module EX_MEM (
     input flush,
 
     //input_DataMemory
-    input [2:0] MemOp_line_in,
-    input MemWrite_line_in,
-    input MemRead_line_in,
-    input [31:0] ReadData2_line_in,
+    input [2:0] MemOp_EX_MEM_in,
+    input MemWrite_EX_MEM_in,
+    input MemRead_EX_MEM_in,
+    input [31:0] ReadData2_EX_MEM_in,
 
     //input_BranchCond
-    input [2:0] Branch_line_in,
-    input Less_line_in,
-    input Zero_line_in,
+    input [2:0] Branch_EX_MEM_in,
+    input Less_EX_MEM_in,
+    input Zero_EX_MEM_in,
 
-    input [31:0] ALUResult_line_in,
+    input [31:0] ALUResult_EX_MEM_in,
 
     //intput_forwarding
-    input     [4:0] rs1_line_in,
-    input     [4:0] rs2_line_in,
+    input     [4:0] rs1_EX_MEM_in,
+    input     [4:0] rs2_EX_MEM_in,
     
     //input_WriteBack
-    input RegWrite_line_in,
-    input [4:0] rd_line_in,
-    input  MemtoReg_line_in,
+    input RegWrite_EX_MEM_in,
+    input [4:0] rd_EX_MEM_in,
+    input  MemtoReg_EX_MEM_in,
 
     //DataMemory
-    output reg [2:0] MemOp_line_out,
-    output reg MemRead_line_out,
-    output reg   MemWrite_line_out, 
-    output reg [31:0] ReadData2_line_out,
+    output reg [2:0] MemOp_EX_MEM_out,
+    output reg MemRead_EX_MEM_out,
+    output reg   MemWrite_EX_MEM_out, 
+    output reg [31:0] ReadData2_EX_MEM_out,
 
     //output_BranchCond
-    output reg [2:0] Branch_line_out,
-    output reg Zero_line_out,
-    output reg Less_line_out,
+    output reg [2:0] Branch_EX_MEM_out,
+    output reg Zero_EX_MEM_out,
+    output reg Less_EX_MEM_out,
     
     
-    output reg [31:0] ALUResult_line_out,
+    output reg [31:0] ALUResult_EX_MEM_out,
     
     //output_forwarding
-    output reg [4:0] rs1_line_out,
-    output reg [4:0] rs2_line_out,
+    output reg [4:0] rs1_EX_MEM_out,
+    output reg [4:0] rs2_EX_MEM_out,
 
     //output_WriteBack
-    output reg [4:0] rd_line_out,
-    output reg RegWrite_line_out,
-    output reg MemtoReg_line_out
+    output reg [4:0] rd_EX_MEM_out,
+    output reg RegWrite_EX_MEM_out,
+    output reg MemtoReg_EX_MEM_out
 );
     always @(posedge clk) begin
         if(reset || flush)
             begin
-                ALUResult_line_out <= 32'b0;
+                ALUResult_EX_MEM_out <= 32'b0;
                 
-                MemOp_line_out <= 3'b0;
-                MemWrite_line_out <= 1'b0;
-                MemRead_line_out <= 1'b0;
-                ReadData2_line_out <= 32'b0;
+                MemOp_EX_MEM_out <= 3'b0;
+                MemWrite_EX_MEM_out <= 1'b0;
+                MemRead_EX_MEM_out <= 1'b0;
+                ReadData2_EX_MEM_out <= 32'b0;
                 
-                Branch_line_out <= 3'b0;
-                Less_line_out <= 1'b0;
-                Zero_line_out <= 1'b0;
+                Branch_EX_MEM_out <= 3'b0;
+                Less_EX_MEM_out <= 1'b0;
+                Zero_EX_MEM_out <= 1'b0;
 
-                rs1_line_out <= 5'b0;
-                rs2_line_out <= 5'b0;
+                rs1_EX_MEM_out <= 5'b0;
+                rs2_EX_MEM_out <= 5'b0;
 
-                rd_line_out <= 5'b0;
-                RegWrite_line_out <= 1'b0;
-                MemtoReg_line_out <= 1'b0;
+                rd_EX_MEM_out <= 5'b0;
+                RegWrite_EX_MEM_out <= 1'b0;
+                MemtoReg_EX_MEM_out <= 1'b0;
             end
         else
             begin
-                ALUResult_line_out <= ALUResult_line_in;
+                ALUResult_EX_MEM_out <= ALUResult_EX_MEM_in;
                 
-                MemOp_line_out <= MemOp_line_in;
-                MemWrite_line_out <= MemOp_line_in;
-                MemRead_line_out <= MemRead_line_in;
-                ReadData2_line_out <= ReadData2_line_in;
+                MemOp_EX_MEM_out <= MemOp_EX_MEM_in;
+                MemWrite_EX_MEM_out <= MemOp_EX_MEM_in;
+                MemRead_EX_MEM_out <= MemRead_EX_MEM_in;
+                ReadData2_EX_MEM_out <= ReadData2_EX_MEM_in;
                 
-                Branch_line_out <= Branch_line_in;
-                Less_line_out <= Less_line_in;
-                Zero_line_out <= Zero_line_in;
+                Branch_EX_MEM_out <= Branch_EX_MEM_in;
+                Less_EX_MEM_out <= Less_EX_MEM_in;
+                Zero_EX_MEM_out <= Zero_EX_MEM_in;
 
-                rs1_line_out <= rs1_line_in;
-                rs2_line_out <= rs2_line_in;
+                rs1_EX_MEM_out <= rs1_EX_MEM_in;
+                rs2_EX_MEM_out <= rs2_EX_MEM_in;
 
-                rd_line_out <= rd_line_in;
-                RegWrite_line_out <= RegWrite_line_in;
-                MemtoReg_line_out <= MemtoReg_line_in;
+                rd_EX_MEM_out <= rd_EX_MEM_in;
+                RegWrite_EX_MEM_out <= RegWrite_EX_MEM_in;
+                MemtoReg_EX_MEM_out <= MemtoReg_EX_MEM_in;
             end
         
     end

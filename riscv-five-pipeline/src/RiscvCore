@@ -43,13 +43,13 @@ v000001f6e1590680_0 .net "MemWrite", 0 0, v000001f6e121d500_0;  1 drivers
 v000001f6e1590e00_0 .net "MemtoReg", 0 0, v000001f6e121d820_0;  1 drivers
 v000001f6e1590220_0 .net "PCASrc", 0 0, v000001f6e121c1a0_0;  1 drivers
 v000001f6e1591260_0 .net "PCBSrc", 0 0, v000001f6e121d8c0_0;  1 drivers
-v000001f6e1591300_0 .net "Rd", 4 0, L_000001f6e1592690;  1 drivers
+v000001f6e1591300_0 .net "rd", 4 0, L_000001f6e1592690;  1 drivers
 v000001f6e1592af0_0 .net "ReadData1", 31 0, L_000001f6e11d9530;  1 drivers
 v000001f6e1592190_0 .net "ReadData2", 31 0, L_000001f6e11d9450;  1 drivers
 v000001f6e1593db0_0 .net "RegWrite", 0 0, v000001f6e121d5a0_0;  1 drivers
 v000001f6e1593b30_0 .net "RegWriteData", 31 0, v000001f6e1590180_0;  1 drivers
-v000001f6e1593c70_0 .net "Rs1", 4 0, L_000001f6e1592910;  1 drivers
-v000001f6e15934f0_0 .net "Rs2", 4 0, L_000001f6e1592eb0;  1 drivers
+v000001f6e1593c70_0 .net "rs1", 4 0, L_000001f6e1592910;  1 drivers
+v000001f6e15934f0_0 .net "rs2", 4 0, L_000001f6e1592eb0;  1 drivers
 v000001f6e1592230_0 .net "Zero", 0 0, v000001f6e121cc40_0;  1 drivers
 o000001f6e1560298 .functor BUFZ 1, C4<z>; HiZ drive
 v000001f6e1593590_0 .net "clk", 0 0, o000001f6e1560298;  0 drivers
@@ -231,13 +231,13 @@ S_000001f6e117ab10 .scope module, "u_decode" "decode" 3 74, 10 1 0, S_000001f6e1
     .port_info 1 /OUTPUT 7 "opcode";
     .port_info 2 /OUTPUT 3 "func3";
     .port_info 3 /OUTPUT 7 "func7";
-    .port_info 4 /OUTPUT 5 "Rs1";
-    .port_info 5 /OUTPUT 5 "Rs2";
-    .port_info 6 /OUTPUT 5 "Rd";
+    .port_info 4 /OUTPUT 5 "rs1";
+    .port_info 5 /OUTPUT 5 "rs2";
+    .port_info 6 /OUTPUT 5 "rd";
 v000001f6e15902c0_0 .net "Instruction", 31 0, o000001f6e1560a48;  alias, 0 drivers
-v000001f6e1591bc0_0 .net "Rd", 4 0, L_000001f6e1592690;  alias, 1 drivers
-v000001f6e1590360_0 .net "Rs1", 4 0, L_000001f6e1592910;  alias, 1 drivers
-v000001f6e1590ae0_0 .net "Rs2", 4 0, L_000001f6e1592eb0;  alias, 1 drivers
+v000001f6e1591bc0_0 .net "rd", 4 0, L_000001f6e1592690;  alias, 1 drivers
+v000001f6e1590360_0 .net "rs1", 4 0, L_000001f6e1592910;  alias, 1 drivers
+v000001f6e1590ae0_0 .net "rs2", 4 0, L_000001f6e1592eb0;  alias, 1 drivers
 v000001f6e15907c0_0 .net "func3", 2 0, L_000001f6e1592410;  alias, 1 drivers
 v000001f6e1590d60_0 .net "func7", 6 0, L_000001f6e1593810;  alias, 1 drivers
 v000001f6e1591da0_0 .net "opcode", 6 0, L_000001f6e1592a50;  alias, 1 drivers
