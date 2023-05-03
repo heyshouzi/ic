@@ -120,7 +120,7 @@ module RiscvCore (
     wire [1:0] forwardA;
     wire [1:0] forwardB;
 
-    //HazardDctectionUnit
+    //HazardDctection
     wire predictor;
     wire flush;
 
